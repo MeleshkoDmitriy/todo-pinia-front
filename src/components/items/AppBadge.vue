@@ -33,6 +33,7 @@ defineProps({
   .num {
     font-size: 15px;
     color: #colors[primary];
+    font-weight: 700;
   }
 }
 </style>

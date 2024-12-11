@@ -12,10 +12,24 @@
       <input type="text" v-model="category" />
     </div>
     <div class="buttons">
-      <button @click="todosStore.toggleTodo(todo.id)">update</button>
-      <button @click="isEditingTodo = true" v-if="!isEditingTodo">edit</button>
-      <button @click="handleUpdate" v-else>save</button>
-      <button @click="todosStore.removeTodo(todo.id)">delete</button>
+      <TodoButton 
+        :type="todo.completed ? 'active' : 'done'" 
+        :action="() => todosStore.toggleTodo(todo.id)" 
+      />
+      <TodoButton 
+        type="edit" 
+        :action="() => { isEditingTodo = true; }" 
+        v-if="!isEditingTodo" 
+      />
+      <TodoButton 
+        type="save" 
+        :action="handleUpdate" 
+        v-if="isEditingTodo" 
+      />
+      <TodoButton 
+        type="remove" 
+        :action="() => todosStore.removeTodo(todo.id)" 
+      />
     </div>
   </div>
 </template>
@@ -23,6 +37,7 @@
 <script setup>
 import { useTodosStore } from "@/stores/todos";
 import { ref, watch } from "vue";
+import  TodoButton  from '../buttons/TodoButton.vue'
 
 const props = defineProps({
   todo: {
