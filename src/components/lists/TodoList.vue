@@ -1,5 +1,5 @@
 <template>
-  <ul class="list">
+  <ul class="list" v-auto-animate>
     <li v-for="todo in todos" :key="todo.id">
       <TodoItem :todo="todo" />
     </li>

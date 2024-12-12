@@ -1,25 +1,19 @@
 <template>
   <form @submit.prevent="handleSubmit" class="form">
-    <input
-      type="text"
-      placeholder="write title"
-      v-model.trim="title"
-      required
-    />
-    <input
-      type="text"
-      placeholder="add category"
-      v-model.trim="category"
-      required
-    />
-    <button type="submit" :disabled="todosStore.isLoading">
-      {{ todosStore.isLoading ? "Sending" : "Submit" }}
-    </button>
+    <div class="group">
+      <AppInput v-model="title" placeholder="Task title" />
+      <AppInput v-model="category" placeholder="Task category" />
+    </div>
+    <div class="button">
+      <FormButton />
+    </div>
   </form>
 </template>
 
 <script setup>
 import { useTodosStore } from "@/stores/todos";
+import AppInput from "../items/AppInput.vue";
+import FormButton from "../buttons/FormButton.vue";
 import { ref } from "vue";
 
 const todosStore = useTodosStore();
@@ -43,8 +37,21 @@ const handleSubmit = async () => {
 
 .form {
   width: 100%;
-  height: 100px;
   border-radius: #radiuses[small];
   background-color: #colors[white];
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  .group {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+
+  .button {
+    align-self: flex-end;
+  }
 }
 </style>

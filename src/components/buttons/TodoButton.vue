@@ -1,7 +1,5 @@
 <template>
-  <button @click="handleClick" class="button">
-    <span class="icon" v-html="buttonTypes[type]"></span>
-  </button>
+  <button @click="handleClick" class="button" v-html="buttonTypes[type]"></button>
 </template>
 
 <script setup>
@@ -31,9 +29,15 @@ const handleClick = () => {
 @import "@/styles/index.less";
 
 .button {
-  width: 20px;
-  height: 20px;
-  .icon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+
+  svg path{
+    width: 50%;
   }
 }
 </style>

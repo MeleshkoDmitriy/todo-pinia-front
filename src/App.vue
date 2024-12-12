@@ -26,7 +26,7 @@ onMounted(() => {
 @import "@/styles/index.less";
 
 .main {
-  background-color: #colors[bg-dark];
+  background-color: #colors[bg-light];
   min-height: 100dvh;
 }
 
